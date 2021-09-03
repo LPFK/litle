@@ -74,9 +74,4 @@ class Commentaire
         return $this;
     }
 
-    public function likerCommentaire()
-    {
-        $this->nombreLike = $this->nombreLike + 1;
-    }
-
 }
