@@ -20,7 +20,12 @@ class Post
     /**
      * @ORM\Column(type="datetime")
      */
-    private $dateCreation;
+    private $DateCreation;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $idcreateur;
 
     /**
      * @ORM\Column(type="integer")
@@ -28,7 +33,12 @@ class Post
     private $nombreDeLike;
 
     /**
-     * @ORM\Column(type="string", length=1024, nullable=true)
+     * @ORM\Column(type="integer")
+     */
+    private $nombreCommentaires;
+
+    /**
+     * @ORM\Column(type="string", length=255)
      */
     private $textePost;
 
@@ -49,12 +59,24 @@ class Post
 
     public function getDateCreation(): ?\DateTimeInterface
     {
-        return $this->dateCreation;
+        return $this->DateCreation;
     }
 
-    public function setDateCreation(\DateTimeInterface $dateCreation): self
+    public function setDateCreation(\DateTimeInterface $DateCreation): self
     {
-        $this->dateCreation = $dateCreation;
+        $this->DateCreation = $DateCreation;
+
+        return $this;
+    }
+
+    public function getIdcreateur(): ?int
+    {
+        return $this->idcreateur;
+    }
+
+    public function setIdcreateur(int $idcreateur): self
+    {
+        $this->idcreateur = $idcreateur;
 
         return $this;
     }
@@ -71,12 +93,24 @@ class Post
         return $this;
     }
 
+    public function getNombreCommentaires(): ?int
+    {
+        return $this->nombreCommentaires;
+    }
+
+    public function setNombreCommentaires(int $nombreCommentaires): self
+    {
+        $this->nombreCommentaires = $nombreCommentaires;
+
+        return $this;
+    }
+
     public function getTextePost(): ?string
     {
         return $this->textePost;
     }
 
-    public function setTextePost(?string $textePost): self
+    public function setTextePost(string $textePost): self
     {
         $this->textePost = $textePost;
 
