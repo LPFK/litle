@@ -20,7 +20,7 @@ class Post
     /**
      * @ORM\Column(type="datetime")
      */
-    private $DateCreation;
+    private $dateCreation;
 
     /**
      * @ORM\Column(type="integer")
