@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommentaireRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -32,6 +34,16 @@ class Commentaire
      * @ORM\Column(type="string", length=1024)
      */
     private $textCommentaire;
+
+    /**
+     * @ORM\OneToMany(targetEntity=LikeCommentaire::class, mappedBy="idCom")
+     */
+    private $listeIdLikeurs;
+
+    public function __construct()
+    {
+        $this->listeIdLikeurs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -73,5 +85,36 @@ class Commentaire
 
         return $this;
     }
+
+    /**
+     * @return Collection|LikeCommentaire[]
+     */
+    public function getListeIdLikeurs(): Collection
+    {
+        return $this->listeIdLikeurs;
+    }
+
+    public function addListeIdLikeur(LikeCommentaire $listeIdLikeur): self
+    {
+        if (!$this->listeIdLikeurs->contains($listeIdLikeur)) {
+            $this->listeIdLikeurs[] = $listeIdLikeur;
+            $listeIdLikeur->setIdCom($this);
+        }
+
+        return $this;
+    }
+
+    public function removeListeIdLikeur(LikeCommentaire $listeIdLikeur): self
+    {
+        if ($this->listeIdLikeurs->removeElement($listeIdLikeur)) {
+            // set the owning side to null (unless already changed)
+            if ($listeIdLikeur->getIdCom() === $this) {
+                $listeIdLikeur->setIdCom(null);
+            }
+        }
+
+        return $this;
+    }
+
 
 }
