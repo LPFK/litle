@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <h1>Register</h1>
+
+
+    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <div class="container px-4 py-5 mx-auto">
+        <div class="card card0">
+            <div class="d-flex flex-lg-row flex-column-reverse">
+                <div class="card card1">
+                    <div class="row justify-content-center my-auto">
+                        <div class="col-md-8 col-10 my-5">
+                            {#<div class="row justify-content-center px-3 mb-3"> <img id="logo" src="" alt="Image not found"> </div>#}
+                            <h3 class="mb-5 text-center heading">Create a account</h3>
+                            <h6 class="msg-info">"it's worth it"</h6>
+
+                            {{ form_start(registrationForm) }}
+                                {{ form_row(registrationForm.email) }}
+                                {{ form_row(registrationForm.username) }}
+                                {{ form_row(registrationForm.plainPassword, {
+                                    label: 'Password'
+                                }) }}
+                                {{ form_row(registrationForm.agreeTerms) }}
+
+                                <button type="submit" class="btn btn-white ml-2">Register</button>
+                            {{ form_end(registrationForm) }}
+                        </div>
+                    </div>
+                    <div class="bottom text-center mb-5">
+                        <p href="#" class="sm-text mx-auto mb-3">Forgot your password?      <button class="btn btn-white ml-2">Send email</button></p>
+                    </div>
+                </div>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

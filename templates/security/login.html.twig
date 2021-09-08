@@ -4,126 +4,48 @@
 
 {% block body %}
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-    <style>
-        .divider:after,
-    .divider:before {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: #eee;
-    }
-    .h-custom {
-    height: calc(100% - 73px);
-    }
-    @media (max-width: 450px) {
-    .h-custom {
-        height: 100%;
-    }
-    }
-    </style>
-    <section class="vh-100">
-    <div class="container-fluid h-custom">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-md-9 col-lg-6 col-xl-5">
-            <img src="" class="img-fluid"
-            alt="Login image que j'ai pas encore trouvé">
-        </div>
-        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-            <form>
-            <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
-                <p class="lead fw-normal mb-0 me-3">Sign in with</p>
-                <button type="button" class="btn btn-primary btn-floating mx-1">
-                <i class="fab fa-facebook-f"></i>
-                </button>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <div class="container px-4 py-5 mx-auto">
+        <div class="card card0">
+            <div class="d-flex flex-lg-row flex-column-reverse">
+                <div class="card card1">
+                    <div class="row justify-content-center my-auto">
+                        <div class="col-md-8 col-10 my-5">
+                            {#<div class="row justify-content-center px-3 mb-3"> <img id="logo" src="" alt="Image not found"> </div>#}
+                            <h3 class="mb-5 text-center heading">Litle</h3>
+                            <h6 class="msg-info">Please login to your account</h6>
+                            <form method="post">
+                            {% if error %}
+                                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                            {% endif %}
 
-                <button type="button" class="btn btn-primary btn-floating mx-1">
-                <i class="fab fa-twitter"></i>
-                </button>
-
-                <button type="button" class="btn btn-primary btn-floating mx-1">
-                <i class="fab fa-linkedin-in"></i>
-                </button>
-            </div>
-
-            <div class="divider d-flex align-items-center my-4">
-                <p class="text-center fw-bold mx-3 mb-0">Or</p>
-            </div>
-
-            <form method="post">
-                    {% if error %}
-                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                    {% endif %}
-
-                    {% if app.user %}
-                        <div class="mb-3">
-                            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                            {% if app.user %}
+                                <div class="mb-3">
+                                    You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                                </div>
+                            {% endif %}
+                            <div class="form-group"> <label class="form-control-label text-muted" for="inputEmail" for="inputUsername">Username</label> <input type="text" placeholder="Username or email" class="form-control" value="{{ last_username }}" name="username" id="inputUsername" autocomplete="username" required autofocus></div>
+                            <div class="form-group"> <label class="form-control-label text-muted" for="inputPassword">Password</label> <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Enter password" autocomplete="current-password" required></div>
+                            <div class="row justify-content-center my-3 px-3"> <button class="btn-block btn-color">Login to Litle</button> </div>
+                            <div class="row justify-content-center my-2"> <a href="#"><small class="text-muted">Forgot Password?</small></a> </div>
+                            <input type="hidden" name="_csrf_token"
+                            value="{{ csrf_token('authenticate') }}"
+                            >
+                            </form>
                         </div>
-                    {% endif %}
-
-                <!-- Email input -->
-                <div class="form-outline mb-4">
-                <input type="text" placeholder="Enter a valid username" value="{{ last_username }}" name="username" id="inputUsername" class="form-control form-control-lg" autocomplete="username" required autofocus>
-                    <label class="form-label" for="inputUsername">Username</label>
-                </div>
-
-                <!-- Password input -->
-                <div class="form-outline mb-3">
-                    <input type="password" name="password" id="inputPassword" class="form-control form-control-lg" placeholder="Enter password" autocomplete="current-password" required>
-            
-                    <label class="form-label" for="inputPassword">Password</label>
-                </div>
-
-                    <input type="hidden" name="_csrf_token"
-                        value="{{ csrf_token('authenticate') }}"
-                    >
-
-                <div class="d-flex justify-content-between align-items-center">
-                    <!-- Checkbox -->
-                    <div class="form-check mb-0">
-                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
-                    <label class="form-check-label" for="form2Example3">
-                        Remember me
-                    </label>
                     </div>
-                    <a href="#!" class="text-body">Forgot password?</a>
+                    <div class="bottom text-center mb-5">
+                        <p href="#" class="sm-text mx-auto mb-3">Don't have an account?      <a class="btn btn-white ml-2" href="/user/new">Create new</a></p>
+                    </div>
                 </div>
-
-                <div class="text-center text-lg-start mt-4 pt-2">
-                    <button type="submit" class="btn btn-primary btn-lg"
-                    style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
-                    <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="#!"
-                        class="link-danger">Register</a></p>
+                <div class="card card2">
+                    <div class="my-auto mx-md-5 px-md-5 right">
+                        <h3 class="text-white">We are more than just a reddit copy</h3> <small class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</small>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </div>
 
-            </form>
-        </div>
-        </div>
-    </div>
-    <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
-        <!-- Copyright -->
-        <div class="text-white mb-3 mb-md-0">
-        Copyright LKZK ©2021. All rights reserved.
-        </div>
-        <!-- Copyright -->
-
-        <!-- Right -->
-        <div>
-        <a href="#!" class="text-white me-4">
-            <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="#!" class="text-white me-4">
-            <i class="fab fa-twitter"></i>
-        </a>
-        <a href="#!" class="text-white me-4">
-            <i class="fab fa-google"></i>
-        </a>
-        <a href="#!" class="text-white">
-            <i class="fab fa-linkedin-in"></i>
-        </a>
-        </div>
-        <!-- Right -->
-    </div>
-    </section>
-    </div>
+    
 {% endblock %}
