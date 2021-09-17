@@ -4,11 +4,12 @@ namespace App\Entity;
 
 use App\Repository\LikePostRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Like;
 
 /**
  * @ORM\Entity(repositoryClass=LikePostRepository::class)
  */
-class LikePost
+class LikePost extends Like
 {
     /**
      * @ORM\Id

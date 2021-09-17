@@ -116,5 +116,9 @@ class Commentaire
         return $this;
     }
 
+    public function likerCommentaire()
+    {
+       
+    }
 
 }
